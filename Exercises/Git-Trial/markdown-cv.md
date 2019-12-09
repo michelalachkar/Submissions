@@ -1,4 +1,4 @@
-### Michel AL Achkar | msiaelalachkar@gmail.com | 70777417
+### Michel AL Achkar | michelalachkar@gmail.com | 70777417
 
 ![This is a placeholder](https://via.placeholder.com/150)
 
