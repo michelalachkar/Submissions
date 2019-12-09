@@ -4,12 +4,12 @@
 
 - **Education:**
 
-  - 2017 - Information Technology - Notre Dame University
+  - **2017** - _Information Technology_ - Notre Dame University
 
 - **Experience:**
 
-  - **DUO BISTRONOMIE** Chef De Rang **May 2017 till Nov 2019**
-  - **Paul** Chef De Rang **Feb 2012 till Mar 2017**
+  - DUO BISTRONOMIE _Chef De Rang_ **May 2017 till Nov 2019**
+  - Paul _Chef De Rang_ **Feb 2012 till Mar 2017**
 
 - **Coding Skills:**
 
