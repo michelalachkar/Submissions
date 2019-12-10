@@ -1,0 +1,24 @@
+header {
+  background-color: aquamarine;
+  text-align: center;
+  padding: 4px;
+}
+header a {
+  text-decoration: none;
+  border: 1px solid red;
+  margin-right: 3px;
+  padding: 2px;
+}
+
+footer {
+  background-color: aquamarine;
+  text-align: center;
+  padding: 4px;
+}
+
+main {
+  text-align: center;
+  background-color: yellowgreen;
+  max-width: 1000px;
+  margin: 0 auto;
+}
