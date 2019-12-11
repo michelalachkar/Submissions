@@ -18,7 +18,7 @@
         </h4>
       </div>
       <nav class="header-nav">
-        <a href="#">Home</a>
+        <a class="hack" href="#">Home</a>
         <a href="#">Contact</a>
         <a href="#">New Page 1</a>
         <a href="#">New Page 2</a>
@@ -94,6 +94,39 @@
         </div>
       </main>
     </div>
+    <hr />
+    <form action="#">
+      <h3>Share with us your suggestions/complaints</h3>
+      <label for="name">
+        Name
+        <input type="text" placeholder="Please enter your name" />
+      </label>
+      <br />
+      <label for="email">
+        Email
+        <input type="email" placeholder="Please enter your email" />
+      </label>
+      <br />
+      <label for="message">
+        Message <br />
+        <textarea
+          name="message"
+          placeholder="Please enter your message here"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </label>
+      <label for="typeOfMessage">
+        <br />
+        Is your message a suggestion or a complaint
+        <br />
+        <input type="radio" name="typeOfMessage" value="Complaint" />Complaint
+        <br />
+        <input type="radio" name="typeOfMessage" value="Suggestion" />
+        Suggestion <br />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
     <hr />
     <footer>
       <p>Copyright &copy; 2014.</p>

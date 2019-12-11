@@ -22,7 +22,7 @@ body {
 }
 
 .header-nav {
-  background-color: lightslategray;
+  background-color: #333d3f;
   margin-top: 5px;
   display: flexbox;
   align-items: flex-start;
@@ -82,4 +82,7 @@ article button {
 
 footer {
   text-align: center;
+}
+.hack {
+  border: none !important;
 }
