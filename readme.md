@@ -48,3 +48,14 @@ code .
 When you're done, you should see your code editor with the files open on the left, like the following screenshot.
 
 ![Screenshot showing the project open in your editor](/assets/images/fork-editor.png)
+
+## Sync forked repo with the Codi Tech Submission
+
+The Codi Tech Submission repo, is an active changes every day.
+To keep working on the latest Submission folders you need to do the followings:
+
+### Setup ( done once whenever you do a new clone )
+`git remote add upstream git@github.com:coditech/Submissions.git`
+
+### Updating ( Recurring step )
+`git pull upstream master`
