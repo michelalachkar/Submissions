@@ -1,3 +1,10 @@
-body {
-  background-color: red;
+body div {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+}
+
+header {
+  background-color: #999999;
 }
