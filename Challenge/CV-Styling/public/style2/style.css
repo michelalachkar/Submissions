@@ -1,3 +1,93 @@
-#wrapper {
-  background-color: red;
+img {
+  transform: rotate(-15deg);
+  height: 150px;
+  width: 150px;
+  float: right;
+}
+
+header {
+  border-bottom: 1px rgb(211, 208, 208) solid;
+}
+h2 {
+  display: none;
+}
+h3 {
+  font-style: italic;
+}
+#about h3 {
+  display: none;
+}
+#about p {
+  max-width: 500px;
+  color: #999;
+  font-style: italic;
+  padding-bottom: 4em;
+}
+
+body div {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+.skill {
+  background-color: #008080;
+  width: 100%;
+  text-align: center;
+}
+
+.skills-primary {
+  display: grid;
+  grid-template-columns: 1f 1fr 1fr;
+  grid-gap: 2px;
+}
+.skills-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2px;
+}
+#contact h3 {
+  display: none;
+}
+.experience-type {
+  color: #008080;
+  font-weight: bold;
+}
+.experience-institution {
+  display: none;
+}
+.experience-location .experience-date {
+  color: #888;
+}
+
+.experience-date-separator {
+  color: #008080;
+}
+
+.experence-details {
+  float: right;
+}
+
+#competencies {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+#competencies h3 {
+  margin: 0px;
+  grid-row: 1/3;
+  height: 100%;
+  border-right: 1px rgb(211, 208, 208) solid;
+}
+
+#competencies div {
+  display: gird;
+  grid-template-rows: 1fr 1fr;
+}
+
+.contact-skype {
+  display: none;
+}
+
+.contact-email {
+  display: block;
+  background-image: url("../images/email.png");
 }
