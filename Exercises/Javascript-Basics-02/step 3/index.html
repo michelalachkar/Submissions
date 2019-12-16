@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Step 3</title>
-</head>
-<body>
-  <form>
-    <label for="name">Your name  : </label><input type="text" name="name" value="" id="name"/>
-  </form>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Step 3</title>
+  </head>
+  <body>
+    <form>
+      <label for="name">Your name : </label
+      ><input type="text" name="name" value="" id="name" />
+    </form>
+    <div class="myDiv"></div>
+    <script>
+      nameSelector = document.querySelector("#name");
+      divSelector = document.querySelector(".myDiv");
+      nameSelector.addEventListener("keyup", e => {
+        divSelector.innerHTML = e.target.value;
+      });
+    </script>
+  </body>
 </html>
