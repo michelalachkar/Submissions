@@ -16,9 +16,11 @@
     </form>
     <script>
       document.querySelector("#reset").addEventListener("click", () => {
-        document.querySelector("#name").value = "";
-        document.querySelector("#surname").value = "";
-        document.querySelector("#city").value = "";
+        if (confirm("Are you sure you want to clear the fields?")) {
+          document.querySelector("#name").value = "";
+          document.querySelector("#surname").value = "";
+          document.querySelector("#city").value = "";
+        }
       });
     </script>
   </body>
