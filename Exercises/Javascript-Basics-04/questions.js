@@ -91,14 +91,28 @@ const addNumberElement = numbers => {
   return numbers;
 };
 
-const removeFirst = languages => {};
+const removeFirst = languages => {
+  languages.shift();
+  return languages;
+};
 
-const removeLast = languages => {};
+const removeLast = languages => {
+  languages.pop();
+  return languages;
+};
 
-const convertStrToArr = social_arr => {};
+const convertStrToArr = social_arr => {
+  return social_arr.split(",");
+};
 
-const convertArrToStr = languages => {};
+const convertArrToStr = languages => {
+  return languages.join(",");
+};
 
-const sortArr = social_arr => {};
+const sortArr = social_arr => {
+  return social_arr.sort();
+};
 
-const invertArr = social_arr => {};
+const invertArr = social_arr => {
+  return social_arr.reverse();
+};
