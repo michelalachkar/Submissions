@@ -1,21 +1,91 @@
-.app {
-  height: 100vh;
-  width: 100vw;
-  transition: background-color 1s ease-in;
-}
-
-.app__header,
-.app__main {
+html,
+body {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.app {
   font-family: "Raleway", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
 }
 
+/*header*/
+.app_header {
+  background-color: #7b88dc;
+}
 /*  Search bar */
+.search_bar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.search_button {
+  background-color: #6455c9;
+  border: none;
+  border-radius: 3px;
+}
+.search_field {
+  background: none;
+  border: none;
+}
+/* Body */
+.app_main {
+  background-color: #9cc2f7;
+  padding-left: 70px;
+  padding-right: 70px;
+  display: grid;
+  grid-template-rows: auto auto;
+}
 
 /* Current weather */
+.current_weather {
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-content: center;
+  text-align: center;
+}
+.imgAndInfo img {
+  margin-top: 20px;
+  width: 250px;
+  height: 250px;
+}
+.info {
+  display: grid;
+  grid-template-rows: auto auto;
+  margin: 0 auto;
+}
+.temperature {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.otherWeatherInfo {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 10px;
+}
+.humidity {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 10px;
+}
+.pressure {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 10px;
+}
+/* Time weather */
+.hourlyWeather {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  justify-content: center;
+  grid-column-gap: 20px;
+  padding-top: 30px;
+}
+.hourlyWeather div img {
+  height: 75px;
+  width: 75px;
+}
+
+.hourlyWeather div {
+  max-width: 100px;
+  text-align: center;
+}
