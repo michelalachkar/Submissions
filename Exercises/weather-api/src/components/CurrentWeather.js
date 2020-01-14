@@ -10,7 +10,6 @@ import snow from "../img/weather-icons/snow.svg";
 import storm from "../img/weather-icons/storm.svg";
 import unknown from "../img/weather-icons/unknown.svg";
 export default function CurrentWeather(props) {
-  console.log(props);
   return (
     <div className="current_weather">
       <div className="imgAndInfo">

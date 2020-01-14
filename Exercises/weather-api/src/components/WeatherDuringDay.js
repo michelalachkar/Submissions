@@ -12,7 +12,6 @@ import storm from "../img/weather-icons/storm.svg";
 import unknown from "../img/weather-icons/unknown.svg";
 import ImageComponent from "./ImageComponent";
 export default function WeatherDuringDay(props) {
-  console.log(props);
   return (
     <div className="hourlyWeather">
       <WeatherAtSpecificTime />

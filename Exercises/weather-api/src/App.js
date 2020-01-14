@@ -8,13 +8,20 @@ import WeatherDuringDay from "./components/WeatherDuringDay";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      cityName: "",
+      apiData: []
+    };
   }
+
+  setCityName = () => {
+    this.setState({ cityName: this.props.cityName });
+  };
 
   render() {
     return (
       <div className="app">
-        <Search />
+        <Search cityName={this.props.cityName} />
         <main className="app_main">
           <CurrentWeather />
           <WeatherDuringDay />

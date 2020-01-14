@@ -1,7 +1,9 @@
 import React from "react";
 
 export default function Search(props) {
-  console.log(props);
+  getCityName = e => {
+    return (this.props.cityName = this.e.value);
+  };
   return (
     <header className="app_header">
       <div className="search_bar">
