@@ -1,5 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
+import clear from "./img/weather-icons/clear.svg";
+import cloudy from "./img/weather-icons/cloudy.svg";
+import drizzle from "./img/weather-icons/drizzle.svg";
+import fog from "./img/weather-icons/fog.svg";
+import mostlyCloudy from "./img/weather-icons/mostlycloudy.svg";
+import partlyCloudy from "./img/weather-icons/partlycloudy.svg";
+import rain from "./img/weather-icons/rain.svg";
+import snow from "./img/weather-icons/snow.svg";
+import storm from "./img/weather-icons/storm.svg";
+import unknown from "./img/weather-icons/unknown.svg";
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +39,7 @@ class App extends Component {
         <main className="app_main">
           <div className="current_weather">
             <div className="imgAndInfo">
-              <img src="http://placekitten.com/200/300" />
+              <img src={clear} />
               <p>overcast clouds</p>
             </div>
             <div className="info">
@@ -58,37 +68,37 @@ class App extends Component {
           <div className="hourlyWeather">
             <div>
               <p>03:00</p>
-              <img src="http://placekitten.com/200/300" />
+              <img src={cloudy} />
               <p>8&deg;C</p>
             </div>
             <div>
               <p>06:00</p>
-              <img src="http://placekitten.com/200/300" />
+              <img src={drizzle} />
               <p>9&deg;C</p>
             </div>
             <div>
               <p>09:00</p>
-              <img src="http://placekitten.com/200/300" />
+              <img src={fog} />
               <p>14&deg;C</p>
             </div>
             <div>
               <p>12:00</p>
-              <img src="http://placekitten.com/200/300" />
+              <img src={mostlyCloudy} />
               <p>17&deg;C</p>
             </div>
             <div>
               <p>15:00</p>
-              <img src="http://placekitten.com/200/300" />
+              <img src={partlyCloudy} />
               <p>18&deg;C</p>
             </div>
             <div>
               <p>18:00</p>
-              <img src="http://placekitten.com/200/300" />
+              <img src={rain} />
               <p>16&deg;C</p>
             </div>
             <div>
               <p>21:00</p>
-              <img src="http://placekitten.com/200/300" />
+              <img src={unknown} />
               <p>13&deg;C</p>
             </div>
           </div>

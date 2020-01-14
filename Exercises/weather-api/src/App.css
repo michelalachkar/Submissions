@@ -27,6 +27,8 @@ body {
 .search_field {
   background: none;
   border: none;
+  color: white;
+  padding-left: 10px;
 }
 /* Body */
 .app_main {
