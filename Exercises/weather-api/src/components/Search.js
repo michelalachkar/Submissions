@@ -29,7 +29,7 @@ export default class Search extends Component {
           />
           <input
             className="search_button"
-            type="button"
+            type="submit"
             name="submit"
             value="FIND WEATHER"
           />

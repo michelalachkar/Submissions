@@ -3,6 +3,7 @@ body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #9cc2f7;
 }
 .app {
   font-family: "Raleway", sans-serif;
@@ -32,7 +33,6 @@ body {
 }
 /* Body */
 .app_main {
-  background-color: #9cc2f7;
   padding-left: 70px;
   padding-right: 70px;
   display: grid;
