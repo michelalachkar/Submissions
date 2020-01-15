@@ -40,5 +40,35 @@ export default function ImageComponent(props) {
         return unknown;
     }
   };
-  return <img src={correspondingImg()} />;
+  const correspondingAlt = () => {
+    let alt = "";
+    switch (true) {
+      case props.imgId < 300:
+        return (alt = "storm image");
+
+      case props.imgId > 300 && props.imgId < 499:
+        return (alt = "drizzle image");
+
+      case props.imgId > 500 && props.imgId < 599:
+        return (alt = "rain image");
+
+      case props.imgId > 600 && props.imgId < 699:
+        return (alt = "snow image");
+
+      case props.imgId > 700 && props.imgId < 799:
+        return (alt = "fog image");
+
+      case props.imgId === 800:
+        return (alt = "clear image");
+
+      case props.imgId == 801:
+        return (alt = "partly cloudy image");
+
+      case props.imgId > 801 && props.imgId < 805:
+        return (alt = "mostly cloudy image");
+      default:
+        return (alt = "unknown weather image");
+    }
+  };
+  return <img src={correspondingImg()} alt={correspondingAlt()} />;
 }
