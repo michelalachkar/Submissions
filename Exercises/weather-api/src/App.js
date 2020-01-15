@@ -10,18 +10,18 @@ class App extends Component {
     super(props);
     this.state = {
       cityName: "",
-      apiData: []
+      apiData: {}
     };
   }
 
-  setCityName = () => {
-    this.setState({ cityName: this.props.cityName });
+  updateCityName = receivedCityName => {
+    this.setState({ cityName: receivedCityName });
   };
 
   render() {
     return (
       <div className="app">
-        <Search cityName={this.props.cityName} />
+        <Search getCityName={this.updateCityName} />
         <main className="app_main">
           <CurrentWeather />
           <WeatherDuringDay />
