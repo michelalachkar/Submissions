@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import clear from "../img/weather-icons/clear.svg";
-import cloudy from "../img/weather-icons/cloudy.svg";
+//import cloudy from "../img/weather-icons/cloudy.svg"; thanks for the svg but we never used it lol
 import drizzle from "../img/weather-icons/drizzle.svg";
 import fog from "../img/weather-icons/fog.svg";
 import mostlyCloudy from "../img/weather-icons/mostlycloudy.svg";
@@ -16,22 +16,22 @@ export default function ImageComponent(props) {
       case props.imgId < 300:
         return storm;
 
-      case props.imgId > 300 && props.imgId < 499:
+      case props.imgId >= 300 && props.imgId < 499:
         return drizzle;
 
-      case props.imgId > 500 && props.imgId < 599:
+      case props.imgId >= 500 && props.imgId < 599:
         return rain;
 
-      case props.imgId > 600 && props.imgId < 699:
+      case props.imgId >= 600 && props.imgId < 699:
         return snow;
 
-      case props.imgId > 700 && props.imgId < 799:
+      case props.imgId >= 700 && props.imgId < 799:
         return fog;
 
       case props.imgId === 800:
         return clear;
 
-      case props.imgId == 801:
+      case props.imgId === 801:
         return partlyCloudy;
 
       case props.imgId > 801 && props.imgId < 805:
@@ -41,33 +41,32 @@ export default function ImageComponent(props) {
     }
   };
   const correspondingAlt = () => {
-    let alt = "";
     switch (true) {
       case props.imgId < 300:
-        return (alt = "storm image");
+        return "storm image";
 
       case props.imgId > 300 && props.imgId < 499:
-        return (alt = "drizzle image");
+        return "drizzle image";
 
       case props.imgId > 500 && props.imgId < 599:
-        return (alt = "rain image");
+        return "rain image";
 
       case props.imgId > 600 && props.imgId < 699:
-        return (alt = "snow image");
+        return "snow image";
 
       case props.imgId > 700 && props.imgId < 799:
-        return (alt = "fog image");
+        return "fog image";
 
       case props.imgId === 800:
-        return (alt = "clear image");
+        return "clear image";
 
-      case props.imgId == 801:
-        return (alt = "partly cloudy image");
+      case props.imgId === 801:
+        return "partly cloudy image";
 
       case props.imgId > 801 && props.imgId < 805:
-        return (alt = "mostly cloudy image");
+        return "mostly cloudy image";
       default:
-        return (alt = "unknown weather image");
+        return "unknown weather image";
     }
   };
   return <img src={correspondingImg()} alt={correspondingAlt()} />;

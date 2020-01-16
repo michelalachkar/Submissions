@@ -4,7 +4,7 @@ import "./App.css";
 import Search from "./components/Search";
 import CurrentWeather from "./components/CurrentWeather";
 import WeatherDuringDay from "./components/WeatherDuringDay";
-import fakeWeather from "./FakeWeather.json";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,34 +17,49 @@ class App extends Component {
         humidity: "",
         pressure: "",
         weatherDescription: "",
-        imgInfo: ""
+        imgInfo: "",
+        tempList: []
       }
     };
   }
-  tempConv = kalvin => {
-    return Math.round(kalvin - 273.15);
-  };
   updateCityName = receivedCityName => {
     this.setState({ cityName: receivedCityName });
+    this.apiRequest(receivedCityName);
   };
-  componentDidMount() {
-    this.setState({
-      apiData: {
-        cityName: fakeWeather.city.name,
-        minTemp: this.tempConv(fakeWeather.list[0].main.temp_min),
-        maxTemp: this.tempConv(fakeWeather.list[0].main.temp_max),
-        humidity: fakeWeather.list[0].main.humidity,
-        pressure: fakeWeather.list[0].main.pressure,
-        weatherDescription: fakeWeather.list[0].weather[0].description,
-        imgInfo: fakeWeather.list[0].weather[0].id
-      }
-    });
-  }
+  updateData = () => {
+    this.updateCityName(this.state.cityName);
+  };
+  apiRequest = city => {
+    const apiKey = "48ac09ad1420fa302200cc07ecfeffa0";
+    const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=8&units=metric&appid=${apiKey}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        let today = data.list.shift();
+        return this.setState({
+          apiData: {
+            cityName: data.city.name,
+            minTemp: Math.round(today.main.temp_min),
+            maxTemp: Math.round(today.main.temp_max),
+            humidity: today.main.humidity,
+            pressure: today.main.pressure,
+            weatherDescription: today.weather[0].description,
+            imgInfo: today.weather[0].id,
+            tempList: [...data.list]
+          }
+        });
+      })
+      .catch(error => {
+        if (error) {
+          alert("Please insert a correct city name");
+        }
+      });
+  };
   render() {
     return (
       <div className="app">
         <Search getCityName={this.updateCityName} />
-        {this.state.cityName != "" && (
+        {this.state.cityName !== "" && (
           <main className="app_main">
             <CurrentWeather
               minTemp={this.state.apiData.minTemp}
@@ -54,7 +69,7 @@ class App extends Component {
               weatherDescription={this.state.apiData.weatherDescription}
               imgInfo={this.state.apiData.imgInfo}
             />
-            <WeatherDuringDay />
+            <WeatherDuringDay list={this.state.apiData.tempList} />
           </main>
         )}
       </div>
