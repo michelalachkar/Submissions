@@ -11,63 +11,73 @@ import storm from "../img/weather-icons/storm.svg";
 import unknown from "../img/weather-icons/unknown.svg";
 
 export default function ImageComponent(props) {
-  const correspondingImg = () => {
-    switch (true) {
-      case props.imgId < 300:
-        return storm;
-
-      case props.imgId >= 300 && props.imgId < 499:
-        return drizzle;
-
-      case props.imgId >= 500 && props.imgId < 599:
-        return rain;
-
-      case props.imgId >= 600 && props.imgId < 699:
-        return snow;
-
-      case props.imgId >= 700 && props.imgId < 799:
-        return fog;
-
-      case props.imgId === 800:
-        return clear;
-
-      case props.imgId === 801:
-        return partlyCloudy;
-
-      case props.imgId > 801 && props.imgId < 805:
-        return mostlyCloudy;
-      default:
-        return unknown;
-    }
+  let corresponding = {
+    svg: "",
+    alt: ""
   };
-  const correspondingAlt = () => {
-    switch (true) {
-      case props.imgId < 300:
-        return "storm image";
+  switch (true) {
+    case props.imgId < 300:
+      corresponding = {
+        svg: storm,
+        alt: "storm image"
+      };
+      break;
 
-      case props.imgId > 300 && props.imgId < 499:
-        return "drizzle image";
+    case props.imgId >= 300 && props.imgId < 499:
+      corresponding = {
+        svg: drizzle,
+        alt: "drizzle image"
+      };
+      break;
 
-      case props.imgId > 500 && props.imgId < 599:
-        return "rain image";
+    case props.imgId >= 500 && props.imgId < 599:
+      corresponding = {
+        svg: rain,
+        alt: "rain image"
+      };
+      break;
 
-      case props.imgId > 600 && props.imgId < 699:
-        return "snow image";
+    case props.imgId >= 600 && props.imgId < 699:
+      corresponding = {
+        svg: snow,
+        alt: "snow image"
+      };
+      break;
 
-      case props.imgId > 700 && props.imgId < 799:
-        return "fog image";
+    case props.imgId >= 700 && props.imgId < 799:
+      corresponding = {
+        svg: fog,
+        alt: "fog image"
+      };
+      break;
 
-      case props.imgId === 800:
-        return "clear image";
+    case props.imgId === 800:
+      corresponding = {
+        svg: clear,
+        alt: "clear image"
+      };
+      break;
 
-      case props.imgId === 801:
-        return "partly cloudy image";
+    case props.imgId === 801:
+      corresponding = {
+        svg: partlyCloudy,
+        alt: "partly cloudy image"
+      };
+      break;
 
-      case props.imgId > 801 && props.imgId < 805:
-        return "mostly cloudy image";
-      default:
-        return "unknown weather image";
-    }
-  };
-  return <img src={correspondingImg()} alt={correspondingAlt()} />;
+    case props.imgId > 801 && props.imgId < 805:
+      corresponding = {
+        svg: mostlyCloudy,
+        alt: "mostly cloudy image"
+      };
+      break;
+    default:
+      corresponding = {
+        svg: unknown,
+        alt: "unknown image"
+      };
+      break;
+  }
+
+  return <img src={corresponding.svg} alt={corresponding.alt} />;
 }
