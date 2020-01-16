@@ -9,9 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cityName: "",
+      flag: false,
       apiData: {
-        cityName: "",
         minTemp: "",
         maxTemp: "",
         humidity: "",
@@ -23,7 +22,6 @@ class App extends Component {
     };
   }
   updateCityName = receivedCityName => {
-    this.setState({ cityName: receivedCityName });
     this.apiRequest(receivedCityName);
   };
 
@@ -35,8 +33,8 @@ class App extends Component {
       .then(data => {
         let today = data.list.shift();
         return this.setState({
+          flag: true,
           apiData: {
-            cityName: data.city.name,
             minTemp: Math.round(today.main.temp_min),
             maxTemp: Math.round(today.main.temp_max),
             humidity: today.main.humidity,
@@ -57,7 +55,7 @@ class App extends Component {
     return (
       <div className="app">
         <Search getCityName={this.updateCityName} />
-        {this.state.cityName !== "" && (
+        {this.state.flag && (
           <main className="app_main">
             <CurrentWeather
               minTemp={this.state.apiData.minTemp}
