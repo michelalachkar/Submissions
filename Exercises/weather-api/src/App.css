@@ -91,7 +91,32 @@ body {
   width: 75px;
 }
 
-.hourlyWeather div {
+.hourlyWeather div p {
   max-width: 100px;
   text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  .hourlyWeather {
+    grid-template-columns: none;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    justify-content: center;
+    grid-column-gap: none;
+    grid-row-gap: 20px;
+  }
+  .hourlyWeather div p {
+    margin: 0 auto;
+  }
+  .hourlyWeather div {
+    border-top: 1px solid grey;
+    padding-top: 10px;
+  }
+  .hourlyWeather div img {
+    height: 250px;
+    width: 250px;
+  }
+
+  .app_main {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
