@@ -23,6 +23,19 @@ class App extends Component {
   }
   updateCityName = receivedCityName => {
     this.apiRequest(receivedCityName);
+    this.changeBackgroundColor(this.state.apiData.imgInfo);
+  };
+
+  changeBackgroundColor = condition => {
+    switch (true) {
+      case condition >= 300 && condition < 499:
+        break;
+      case condition >= 500 && condition < 599:
+        return "sadBackground";
+
+      case condition < 300:
+        return "stayHome";
+    }
   };
 
   apiRequest = city => {
@@ -56,7 +69,11 @@ class App extends Component {
       <div className="app">
         <Search getCityName={this.updateCityName} />
         {this.state.flag && (
-          <main className="app_main">
+          <main
+            className={`app_main ${this.changeBackgroundColor(
+              this.state.apiData.imgInfo
+            )}`}
+          >
             <CurrentWeather
               minTemp={this.state.apiData.minTemp}
               maxTemp={this.state.apiData.maxTemp}

@@ -120,3 +120,11 @@ body {
     padding-right: 0px;
   }
 }
+
+.sadBackground {
+  background-color: grey;
+}
+
+.stayHome {
+  background-color: red;
+}
