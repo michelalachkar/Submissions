@@ -26,9 +26,7 @@ class App extends Component {
     this.setState({ cityName: receivedCityName });
     this.apiRequest(receivedCityName);
   };
-  updateData = () => {
-    this.updateCityName(this.state.cityName);
-  };
+
   apiRequest = city => {
     const apiKey = "48ac09ad1420fa302200cc07ecfeffa0";
     const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=8&units=metric&appid=${apiKey}`;
