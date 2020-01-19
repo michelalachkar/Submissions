@@ -19,4 +19,17 @@
 
 "DELETE from students WHERE Name = 'Layal'"
 
+"CREATE TABLE data (
+   Employee_Name TEXT,
+   Company_Name TEXT,
+   Company_Date TEXT)"
 
+"SELECT employees.Name
+    FROM employees
+    INNER JOIN companies ON employees.Company=companies.name
+    WHERE companies.date < 2000 "
+
+"SELECT companies.name
+    FROM companies
+    INNER JOIN employees ON companies.Name=employees.Company
+    WHERE employees.Role = 'Graphic Designer'"
