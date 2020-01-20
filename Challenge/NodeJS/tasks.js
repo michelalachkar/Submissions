@@ -35,13 +35,13 @@ let argument = "";
 let text = "";
 function onDataReceived(input) {
   //Clear unwanted white spaces arround our args
-  input = input.trim();
+  input = input.trim().split(" ");
   //Check if the input has any arguments
-  if (input.split(" ").length > 1) {
-    argument = input.split(" ")[1].replace("\n", "");
+  if (input.length > 1) {
+    argument = input[1].replace("\n", "");
   }
   //Make sure text ends with an \n
-  text = input.split(" ")[0];
+  text = input.shift();
 
   if (text === "quit" || text === "exit") {
     quit();
@@ -50,6 +50,9 @@ function onDataReceived(input) {
   } else if (text === "help") {
     help();
   } else if (text === "list") {
+    list(tasks);
+  } else if (text === "add") {
+    add(input.join(" "));
     list(tasks);
   } else {
     unknownCommand(text);
@@ -101,8 +104,9 @@ function help() {
   console.log(`
   Command\t\t\tWhat it does
   -------\t\t\t-----------------
-  hello [arg]\t\t\tGreets user
-  list\t\t\tList all available tasks
+  hello [name]\t\t\tGreets user
+  add [task]\t\t\tAdds [task] to you available tasks
+  list\t\t\t\tList all available tasks
   help\t\t\t\tLists available commands
   exit/quit\t\t\tExit application`);
 }
@@ -121,6 +125,18 @@ function list(tasksList) {
   }
   result += "----------------";
   console.log(result);
+}
+
+/**
+ * Adds a task to the available tasks
+ *
+ *@param {string} toAdd
+ *
+ * @returns {void}
+ */
+
+function add(task) {
+  tasks.push(task);
 }
 // The following line starts the application
 startApp("Michel Al Achkar");
