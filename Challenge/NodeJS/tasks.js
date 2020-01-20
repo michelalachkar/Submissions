@@ -40,7 +40,6 @@ function onDataReceived(input) {
   if (input.length > 1) {
     argument = input[1].replace("\n", "");
   }
-  //Make sure text ends with an \n
   text = input.shift();
 
   if (text === "quit" || text === "exit") {
@@ -53,6 +52,14 @@ function onDataReceived(input) {
     list(tasks);
   } else if (text === "add") {
     add(input.join(" "));
+    list(tasks);
+  } else if (text === "remove") {
+    if (parseInt(argument)) {
+      remove(argument);
+      argument = "";
+    } else {
+      remove();
+    }
     list(tasks);
   } else {
     unknownCommand(text);
@@ -110,7 +117,14 @@ function help() {
   help\t\t\t\tLists available commands
   exit/quit\t\t\tExit application`);
 }
-let tasks = ["do this", "do that", "do some other stuff"];
+let tasks = [
+  "do this",
+  "do that",
+  "do some other stuff",
+  "that",
+  "this",
+  "something"
+];
 /**
  * Lists all tasks
  *
@@ -130,13 +144,28 @@ function list(tasksList) {
 /**
  * Adds a task to the available tasks
  *
- *@param {string} toAdd
+ *@param {string} task
  *
- * @returns {void}
+ * @returns {void}splice(tasks.length,1)
  */
 
 function add(task) {
   tasks.push(task);
+}
+/**
+ * Removes task with the taskId provided, or the last
+ * task if nothing was provided
+ *
+ *@param {integer} taskId
+ *
+ * @returns {void}
+ */
+function remove(taskId = 0) {
+  if (taskId !== 0) {
+    tasks.splice(parseInt(taskId - 1), 1);
+  } else {
+    tasks.pop();
+  }
 }
 // The following line starts the application
 startApp("Michel Al Achkar");
