@@ -284,7 +284,8 @@ function check(taskId) {
  */
 
 function uncheck(taskId) {
-  if (parseInt(taskId <= tasks.length)) {
+  console.log(taskId);
+  if (parseInt(taskId) < tasks.length) {
     tasks[taskId - 1].done = false;
   } else {
     console.log("Error!!");
