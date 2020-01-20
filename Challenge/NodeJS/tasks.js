@@ -59,7 +59,6 @@ function onDataReceived(input) {
     } else {
       remove();
     }
-    list(tasks);
   } else {
     unknownCommand(text);
   }
@@ -164,10 +163,14 @@ function add(task) {
  * @returns {void}
  */
 function remove(taskId = 0) {
-  if (taskId !== 0) {
+  if (taskId > tasks.length) {
+    console.log("id doesn't exit, please select a proper id");
+  } else if (taskId !== 0) {
     tasks.splice(parseInt(taskId - 1), 1);
+    list(tasks);
   } else {
     tasks.pop();
+    list(tasks);
   }
 }
 // The following line starts the application
