@@ -66,7 +66,8 @@ function unknownCommand(c) {
 }
 
 /**
- * Says hello
+ * Says hello @string !
+ * And defaults to "" if the user doesn't provide an argument
  *
  * @returns {void}
  */
