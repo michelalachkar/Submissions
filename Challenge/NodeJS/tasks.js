@@ -74,6 +74,10 @@ function onDataReceived(input) {
       let newText = input.join(" ");
       edit(newText);
     }
+  } else if (text === "check") {
+    check(input[1]);
+  } else if (text === "uncheck") {
+    uncheck(input[1]);
   } else {
     unknownCommand(text);
   }
@@ -232,6 +236,39 @@ function edit(newText = "", taskId = 0) {
     tasks[tasks.length - 1].description = newText;
   } else {
     tasks[taskId - 1].description = newText;
+  }
+}
+
+/**
+ * Marks a task as done
+ *
+ *@param {integer} taskId
+ *
+ *
+ * @returns {void}
+ */
+
+function check(taskId) {
+  if (parseInt(taskId)) {
+    tasks[taskId - 1].done = true;
+  } else {
+    console.log("Error!!");
+  }
+}
+/**
+ * Marks a task as not done
+ *
+ *@param {integer} taskId
+ *
+ *
+ * @returns {void}
+ */
+
+function uncheck(taskId) {
+  if (parseInt(taskId)) {
+    tasks[taskId - 1].done = false;
+  } else {
+    console.log("Error!!");
   }
 }
 // The following line starts the application
