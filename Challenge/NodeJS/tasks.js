@@ -74,7 +74,8 @@ function onDataReceived(input) {
     persist(tasks);
     quit();
   } else if (text === "hello") {
-    hello(argument);
+    input.shift();
+    hello(input.join(" "));
   } else if (text === "help") {
     help();
   } else if (text === "list") {
