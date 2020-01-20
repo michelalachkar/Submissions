@@ -28,7 +28,7 @@ function startApp(name) {
  * The text received would be "batata"
  * This function  then directs to other functions
  *
- * @param  {string} text data typed by the user
+ * @param  {string} input data typed by the user
  * @returns {void}
  */
 let argument = "";
@@ -49,6 +49,8 @@ function onDataReceived(input) {
     hello(argument);
   } else if (text === "help") {
     help();
+  } else if (text === "list") {
+    list(tasks);
   } else {
     unknownCommand(text);
   }
@@ -66,8 +68,9 @@ function unknownCommand(c) {
 }
 
 /**
- * Says hello @string !
+ * Says hello to user !
  * And defaults to "" if the user doesn't provide an argument
+ *@param {string} argument
  *
  * @returns {void}
  */
@@ -93,14 +96,31 @@ function quit() {
  *
  * @returns {void}
  */
+
 function help() {
   console.log(`
   Command\t\t\tWhat it does
   -------\t\t\t-----------------
   hello [arg]\t\t\tGreets user
+  list\t\t\tList all available tasks
   help\t\t\t\tLists available commands
   exit/quit\t\t\tExit application`);
 }
-
+let tasks = ["do this", "do that", "do some other stuff"];
+/**
+ * Lists all tasks
+ *
+ *@param {array} taksList
+ *
+ * @returns {void}
+ */
+function list(tasksList) {
+  let result = "Available Tasks\n----------------\n";
+  for (i = 0; i < tasksList.length; i++) {
+    result += `${i + 1}- ${tasksList[i]}\n`;
+  }
+  result += "----------------";
+  console.log(result);
+}
 // The following line starts the application
 startApp("Michel Al Achkar");
