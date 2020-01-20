@@ -56,7 +56,6 @@ function onDataReceived(input) {
   } else if (text === "remove") {
     if (parseInt(argument)) {
       remove(argument);
-      argument = "";
     } else {
       remove();
     }
@@ -64,6 +63,8 @@ function onDataReceived(input) {
   } else {
     unknownCommand(text);
   }
+  argument = "";
+  text = "";
 }
 
 /**
@@ -114,6 +115,8 @@ function help() {
   hello [name]\t\t\tGreets user
   add [task]\t\t\tAdds [task] to you available tasks
   list\t\t\t\tList all available tasks
+  remove [id]\t\t\tRemove task with id [id]
+  remove\t\t\tRemove the last task
   help\t\t\t\tLists available commands
   exit/quit\t\t\tExit application`);
 }
