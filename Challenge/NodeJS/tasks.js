@@ -249,6 +249,8 @@ function remove(taskId = 0) {
 function edit(newText = "", taskId = 0) {
   if (newText === "") {
     console.log("Error!!");
+  } else if (taskId > tasks.length) {
+    console.log("id doesn't exist");
   } else if (taskId === 0) {
     tasks[tasks.length - 1].description = newText;
   } else {
@@ -266,7 +268,7 @@ function edit(newText = "", taskId = 0) {
  */
 
 function check(taskId) {
-  if (parseInt(taskId)) {
+  if (parseInt(taskId) <= tasks.length) {
     tasks[taskId - 1].done = true;
   } else {
     console.log("Error!!");
@@ -282,7 +284,7 @@ function check(taskId) {
  */
 
 function uncheck(taskId) {
-  if (parseInt(taskId)) {
+  if (parseInt(taskId <= tasks.length)) {
     tasks[taskId - 1].done = false;
   } else {
     console.log("Error!!");
