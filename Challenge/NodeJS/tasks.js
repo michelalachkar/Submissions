@@ -43,6 +43,7 @@ function startApp(name) {
   process.stdin.on("data", onDataReceived);
   console.log(`Welcome to ${name}'s application!`);
   console.log("--------------------");
+  console.log("Type help for list of commands");
 }
 
 /**
@@ -63,6 +64,8 @@ function startApp(name) {
 let argument = "";
 let text = "";
 function onDataReceived(input) {
+  console.clear();
+  console.log("Type help for list of commands");
   //Clear unwanted white spaces arround our args
   input = input.trim().split(" ");
   //Check if the input has any arguments
@@ -95,6 +98,7 @@ function onDataReceived(input) {
     } else {
       remove();
     }
+    list(tasks);
   } else if (text === "edit") {
     input.shift();
     if (parseInt(input[0])) {
@@ -105,10 +109,13 @@ function onDataReceived(input) {
       let newText = input.join(" ");
       edit(newText);
     }
+    list(tasks);
   } else if (text === "check") {
     check(input[1]);
+    list(tasks);
   } else if (text === "uncheck") {
     uncheck(input[1]);
+    list(tasks);
   } else {
     unknownCommand(text);
   }
