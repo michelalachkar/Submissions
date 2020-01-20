@@ -65,8 +65,14 @@ function onDataReceived(input) {
       remove();
     }
   } else if (text === "edit") {
+    input.shift();
     if (parseInt(input[0])) {
-      edit(input.shift(), input.join(" "));
+      let taskId = input.shift();
+      let newText = input.join(" ");
+      edit(newText, taskId);
+    } else {
+      let newText = input.join(" ");
+      edit(newText);
     }
   } else {
     unknownCommand(text);
@@ -195,9 +201,9 @@ function edit(newText = "", taskId = 0) {
   if (newText === "") {
     console.log("Error!!");
   } else if (taskId === 0) {
-    tasks[length] = newText;
+    tasks[tasks.length - 1] = newText;
   } else {
-    tasks[taskId] = newText;
+    tasks[taskId - 1] = newText;
   }
 }
 // The following line starts the application
