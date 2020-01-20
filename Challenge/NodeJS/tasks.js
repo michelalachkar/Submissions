@@ -133,6 +133,10 @@ function help() {
   list\t\t\t\tList all available tasks
   remove [id]\t\t\tRemove task with id [id]
   remove\t\t\tRemove the last task
+  edit [id] [text]\t\tEdits task with id [id]
+  edit [text]\t\t\tEdits last task in list
+  check [id]\t\t\tMarks task with id [id] as done
+  uncheck [id]\t\t\tMarks task with id [id] as not done
   help\t\t\t\tLists available commands
   exit/quit\t\t\tExit application`);
 }
