@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 /**
  * Starts the application
  * This is the function that is run when the app starts
@@ -8,7 +10,13 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
+let tasks = [];
+
 function startApp(name) {
+  fs.readFile("database.json", (err, data) => {
+    if (err) throw err;
+    tasks = JSON.parse(data);
+  });
   process.stdin.resume();
   process.stdin.setEncoding("utf8");
   process.stdin.on("data", onDataReceived);
@@ -42,6 +50,7 @@ function onDataReceived(input) {
   }
   text = input[0];
   if (text === "quit" || text === "exit") {
+    persist(tasks);
     quit();
   } else if (text === "hello") {
     hello(argument);
@@ -140,32 +149,7 @@ function help() {
   help\t\t\t\tLists available commands
   exit/quit\t\t\tExit application`);
 }
-let tasks = [
-  {
-    description: "this",
-    done: false
-  },
-  {
-    description: "that",
-    done: false
-  },
-  {
-    description: "something",
-    done: false
-  },
-  {
-    description: "something else",
-    done: true
-  },
-  {
-    description: "abcd",
-    done: false
-  },
-  {
-    description: "wxyz",
-    done: false
-  }
-];
+
 /**
  * Lists all tasks
  *
@@ -174,7 +158,7 @@ let tasks = [
  * @returns {void}
  */
 function list(tasksList) {
-  let result = "Available Tasks\n----------------\n";
+  let result = "----------------\nAvailable Tasks\n----------------\n";
   for (i = 0; i < tasksList.length; i++) {
     let checkMark = "";
     if (tasksList[i].done) {
@@ -274,6 +258,20 @@ function uncheck(taskId) {
   } else {
     console.log("Error!!");
   }
+}
+
+/**
+ * Persist data to a json file
+ *
+ *@param {array} tasks
+ *
+ *
+ * @returns {void}
+ */
+
+function persist(toBeSaved) {
+  let data = JSON.stringify(toBeSaved);
+  fs.writeFileSync("./database.json", data);
 }
 // The following line starts the application
 startApp("Michel Al Achkar");
