@@ -133,12 +133,30 @@ function help() {
   exit/quit\t\t\tExit application`);
 }
 let tasks = [
-  "do this",
-  "do that",
-  "do some other stuff",
-  "that",
-  "this",
-  "something"
+  {
+    description: "this",
+    done: false
+  },
+  {
+    description: "that",
+    done: false
+  },
+  {
+    description: "something",
+    done: false
+  },
+  {
+    description: "something else",
+    done: true
+  },
+  {
+    description: "abcd",
+    done: false
+  },
+  {
+    description: "wxyz",
+    done: false
+  }
 ];
 /**
  * Lists all tasks
@@ -150,7 +168,13 @@ let tasks = [
 function list(tasksList) {
   let result = "Available Tasks\n----------------\n";
   for (i = 0; i < tasksList.length; i++) {
-    result += `${i + 1}- ${tasksList[i]}\n`;
+    let checkMark = "";
+    if (tasksList[i].done) {
+      checkMark = "✓";
+    } else {
+      checkMark = "x";
+    }
+    result += `${i + 1} - [${checkMark}] ${tasksList[i].description}\n`;
   }
   result += "----------------";
   console.log(result);
@@ -165,7 +189,11 @@ function list(tasksList) {
  */
 
 function add(task) {
-  tasks.push(task);
+  let taskObject = {
+    description: task,
+    done: false
+  };
+  tasks.push(taskObject);
 }
 /**
  * Removes task with the taskId provided, or the last
@@ -201,9 +229,9 @@ function edit(newText = "", taskId = 0) {
   if (newText === "") {
     console.log("Error!!");
   } else if (taskId === 0) {
-    tasks[tasks.length - 1] = newText;
+    tasks[tasks.length - 1].description = newText;
   } else {
-    tasks[taskId - 1] = newText;
+    tasks[taskId - 1].description = newText;
   }
 }
 // The following line starts the application
