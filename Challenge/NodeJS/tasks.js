@@ -31,12 +31,23 @@ function startApp(name) {
  * @param  {string} text data typed by the user
  * @returns {void}
  */
-function onDataReceived(text) {
-  if (text === "quit\n" || text === "exit\n") {
+let argument = "";
+let text = "";
+function onDataReceived(input) {
+  //Clear unwanted white spaces arround our args
+  input = input.trim();
+  //Check if the input has any arguments
+  if (input.split(" ").length > 1) {
+    argument = input.split(" ")[1].replace("\n", "");
+  }
+  //Make sure text ends with an \n
+  text = input.split(" ")[0];
+
+  if (text === "quit" || text === "exit") {
     quit();
-  } else if (text === "hello\n") {
-    hello();
-  } else if (text === "help\n") {
+  } else if (text === "hello") {
+    hello(argument);
+  } else if (text === "help") {
     help();
   } else {
     unknownCommand(text);
@@ -59,8 +70,12 @@ function unknownCommand(c) {
  *
  * @returns {void}
  */
-function hello() {
-  console.log("hello!");
+function hello(argument = "") {
+  if (argument !== "") {
+    console.log(`hello ${argument}!`);
+  } else {
+    console.log("hello!");
+  }
 }
 
 /**
@@ -81,7 +96,7 @@ function help() {
   console.log(`
   Command\t\t\tWhat it does
   -------\t\t\t-----------------
-  hello\t\t\t\tGreets user
+  hello [arg]\t\t\tGreets user
   help\t\t\t\tLists available commands
   exit/quit\t\t\tExit application`);
 }
