@@ -36,6 +36,8 @@ function onDataReceived(text) {
     quit();
   } else if (text === "hello\n") {
     hello();
+  } else if (text === "help\n") {
+    help();
   } else {
     unknownCommand(text);
   }
@@ -69,6 +71,15 @@ function hello() {
 function quit() {
   console.log("Quitting now, goodbye!");
   process.exit();
+}
+
+function help() {
+  console.log(`
+  Command\t\t\tWhat it does
+  -------\t\t\t-----------------
+  hello\t\t\t\tGreets user
+  help\t\t\t\tLists available commands
+  exit/quit\t\t\tExit application`);
 }
 
 // The following line starts the application
