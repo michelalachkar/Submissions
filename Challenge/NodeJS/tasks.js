@@ -38,10 +38,9 @@ function onDataReceived(input) {
   input = input.trim().split(" ");
   //Check if the input has any arguments
   if (input.length > 1) {
-    argument = input[1].replace("\n", "");
+    argument = input[1];
   }
-  text = input.shift();
-
+  text = input[0];
   if (text === "quit" || text === "exit") {
     quit();
   } else if (text === "hello") {
@@ -51,19 +50,27 @@ function onDataReceived(input) {
   } else if (text === "list") {
     list(tasks);
   } else if (text === "add") {
-    add(input.join(" "));
-    list(tasks);
+    input.shift();
+    if (input.join(" ") === "") {
+      console.log("please provide us with a task");
+    } else {
+      add(input.join(" "));
+      list(tasks);
+    }
   } else if (text === "remove") {
     if (parseInt(argument)) {
       remove(argument);
+      argument = "";
     } else {
       remove();
+    }
+  } else if (text === "edit") {
+    if (parseInt(input[0])) {
+      edit(input.shift(), input.join(" "));
     }
   } else {
     unknownCommand(text);
   }
-  argument = "";
-  text = "";
 }
 
 /**
@@ -171,6 +178,26 @@ function remove(taskId = 0) {
   } else {
     tasks.pop();
     list(tasks);
+  }
+}
+
+/**
+ * Edits task with the taskId provided, or the last
+ * task if nothing was provided
+ *
+ *@param {integer} taskId
+ *@param {string} newText
+ *
+ * @returns {void}
+ */
+
+function edit(newText = "", taskId = 0) {
+  if (newText === "") {
+    console.log("Error!!");
+  } else if (taskId === 0) {
+    tasks[length] = newText;
+  } else {
+    tasks[taskId] = newText;
   }
 }
 // The following line starts the application
