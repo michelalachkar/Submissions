@@ -11,12 +11,33 @@ const fs = require("fs");
  * @returns {void}
  */
 let tasks = [];
+let myDb = "";
 
 function startApp(name) {
-  fs.readFile("database.json", (err, data) => {
-    if (err) throw err;
-    tasks = JSON.parse(data);
-  });
+  if (process.argv.length === 2) {
+    myDb = "./database.json";
+  } else {
+    myDb = process.argv[2];
+  }
+  if (fs.existsSync(myDb)) {
+    fs.readFile(myDb, (err, data) => {
+      if (err) {
+        throw err;
+      }
+      tasks = JSON.parse(data);
+    });
+  } else {
+    let data = JSON.stringify(tasks);
+    fs.appendFileSync(myDb, data);
+
+    fs.readFileSync(myDb, (err, data) => {
+      if (err) {
+        throw err;
+      }
+      tasks = JSON.parse(data);
+    });
+  }
+
   process.stdin.resume();
   process.stdin.setEncoding("utf8");
   process.stdin.on("data", onDataReceived);
@@ -271,7 +292,7 @@ function uncheck(taskId) {
 
 function persist(toBeSaved) {
   let data = JSON.stringify(toBeSaved);
-  fs.writeFileSync("./database.json", data);
+  fs.writeFileSync(myDb, data);
 }
 // The following line starts the application
 startApp("Michel Al Achkar");
