@@ -278,14 +278,13 @@ function check(taskId) {
  * Marks a task as not done
  *
  *@param {integer} taskId
- *
+ *uncheck
  *
  * @returns {void}
  */
 
 function uncheck(taskId) {
-  console.log(taskId);
-  if (parseInt(taskId) < tasks.length) {
+  if (parseInt(taskId) <= tasks.length) {
     tasks[taskId - 1].done = false;
   } else {
     console.log("Error!!");
