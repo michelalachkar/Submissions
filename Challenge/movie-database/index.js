@@ -47,6 +47,36 @@ let movies = [
 app.get("/movies/get", (req, res) => {
   res.json({ status: 200, data: movies });
 });
+
+app.get("/movies/get/:sortby", (req, res) => {
+  const sortBy = req.params.sortby;
+  let arrayToReturn = [];
+  switch (sortBy) {
+    case "by-date":
+      arrayToReturn = movies.sort((a, b) => {
+        return a.year - b.year;
+      });
+      break;
+    case "by-rating":
+      arrayToReturn = movies.sort((a, b) => {
+        return b.rating - a.rating;
+      });
+      break;
+    case "by-title":
+      arrayToReturn = movies.sort((a, b) => {
+        return a.title > b.title;
+      });
+      break;
+    default:
+      res.json({
+        status: 500,
+        error: true,
+        message: "you have to provide a valid search"
+      });
+      break;
+  }
+  res.json({ status: 200, data: arrayToReturn });
+});
 //add
 app.get("/movies/add", (req, res) => {
   res.send("this should be a post request that adds a movie");
