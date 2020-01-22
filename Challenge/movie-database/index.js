@@ -77,6 +77,20 @@ app.get("/movies/get/:sortby", (req, res) => {
   }
   res.json({ status: 200, data: arrayToReturn });
 });
+
+app.get("/movies/get/id/:id", (req, res) => {
+  if (req.params.id) {
+    if (req.params.id < movies.length && req.params.id >= 0) {
+      res.json({ status: 200, data: movies[req.params.id] });
+    } else {
+      res.json({
+        status: 404,
+        error: true,
+        message: `the movie with id ${req.params.id} does not exist`
+      });
+    }
+  }
+});
 //add
 app.get("/movies/add", (req, res) => {
   res.send("this should be a post request that adds a movie");
