@@ -1,9 +1,9 @@
 const express = require("express");
-
+const bodyParser = require("body-parser");
 const app = express();
 
 const port = 5000;
-
+app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("now");
 });
@@ -23,7 +23,7 @@ app.get("/hello/:id", (req, res) => {
   res.send({ status: 200, message: `hello ${myId}` });
 });
 
-app.get("/search?", (req, res) => {
+app.get("/search", (req, res) => {
   if (req.query.s) {
     const mySearch = req.query.s;
 
@@ -108,11 +108,17 @@ const paramChecker=(year,title)=>{
   return errors;
 }
 
-app.get("/movies/add?", (req, res) => {
+app.post("/movies/add", (req, res) => {
   let year = req.query.year;
   let title = req.query.title;
   let rating = req.query.rating;
-  
+  req.body.year = year;
+  req.body.title = title;
+  req.body.rating = rating;
+  year = req.body.year;
+  title = req.body.title;
+  rating = req.body.rating;
+
   let errors = paramChecker(year,title);
   if (errors.length>0){
     res.json({status:403, error:true, message:errors});
@@ -128,7 +134,7 @@ app.get("/movies/add?", (req, res) => {
 
 
 //edit
-app.get("/movies/update/:id?", (req, res) => {
+app.put("/movies/update/:id", (req, res) => {
   let  id = req.params.id;
   if(id>=0&&id<movies.length){
     for(test in req.query){
@@ -148,7 +154,7 @@ app.get("/movies/update/:id?", (req, res) => {
   }
 });
 //delete
-app.get("/movies/delete/:id", (req, res) => {
+app.delete("/movies/delete/:id", (req, res) => {
   let id = req.params.id;
   if(id<movies.length&&id>=0){
     let removedMovie = movies.splice(id,1);
