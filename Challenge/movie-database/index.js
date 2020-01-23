@@ -1,9 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-
 const port = 5000;
 app.use(bodyParser.json());
+
+//const mongoose = require('mongoose');
+
+//const connectionString = "mongodb+srv://michel:codicodi@clusterprime-mvjxv.gcp.mongodb.net/test?retryWrites=true&w=majority";
+
+//mongoose.connect(connectionString);
 app.get("/", (req, res) => {
   res.send("now");
 });
@@ -137,7 +142,7 @@ app.post("/movies/add", (req, res) => {
 app.put("/movies/update/:id", (req, res) => {
   let  id = req.params.id;
   if(id>=0&&id<movies.length){
-    for(test in req.query){
+    for(test in req.query){add
       if(test==="title"){
         movies[id][test] = req.query[test];
       }
@@ -158,7 +163,6 @@ app.delete("/movies/delete/:id", (req, res) => {
   let id = req.params.id;
   if(id<movies.length&&id>=0){
     let removedMovie = movies.splice(id,1);
-    console.log(removedMovie);
     res.json({status:200,data:movies});
   }else{
     res.json({status:404, error:true, message:`the movie id ${id} does not exist`})
