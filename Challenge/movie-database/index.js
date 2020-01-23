@@ -130,8 +130,15 @@ app.get("/movies/edit", (req, res) => {
   res.send("this should be a post request that eduts a movie");
 });
 //delete
-app.get("/movies/delete", (req, res) => {
-  res.send("this should be a post request that deletes a movie");
+app.get("/movies/delete/:id", (req, res) => {
+  let id = req.params.id;
+  if(id<movies.length&&id>=0){
+    let removedMovie = movies.splice(id,1);
+    console.log(removedMovie);
+    res.json({status:200,data:movies});
+  }else{
+    res.json({status:404, error:true, message:`the movie id ${id} does not exist`})
+  }
 });
 
 app.listen(port, () => {
