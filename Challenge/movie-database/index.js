@@ -142,11 +142,10 @@ app.get("/movies/update/:id?", (req, res) => {
         movies[id][test] = req.query[test];
       }
     }
+    res.json(movies);
   }else{
     res.json({status:404,error:true,message:`id ${id} doesn't exist`})
   }
-  
-  res.json(movies);
 });
 //delete
 app.get("/movies/delete/:id", (req, res) => {
