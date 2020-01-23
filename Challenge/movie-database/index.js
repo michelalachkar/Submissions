@@ -112,6 +112,7 @@ app.get("/movies/add?", (req, res) => {
   let year = req.query.year;
   let title = req.query.title;
   let rating = req.query.rating;
+  
   let errors = paramChecker(year,title);
   if (errors.length>0){
     res.json({status:403, error:true, message:errors});
@@ -121,13 +122,31 @@ app.get("/movies/add?", (req, res) => {
   }else{
     movies.push({title:title,year:year,rating:rating});
     res.json({title:title,year:year,rating:rating});
+    
   }
-
-  console.log(movies);
 });
+
+
 //edit
-app.get("/movies/edit", (req, res) => {
-  res.send("this should be a post request that eduts a movie");
+app.get("/movies/update/:id?", (req, res) => {
+  let  id = req.params.id;
+  if(id>=0&&id<movies.length){
+    for(test in req.query){
+      if(test==="title"){
+        movies[id][test] = req.query[test];
+      }
+      if(test==="year"){
+        movies[id][test] = req.query[test];
+      }
+      if(test==="rating"){
+        movies[id][test] = req.query[test];
+      }
+    }
+  }else{
+    res.json({status:404,error:true,message:`id ${id} doesn't exist`})
+  }
+  
+  res.json(movies);
 });
 //delete
 app.get("/movies/delete/:id", (req, res) => {
