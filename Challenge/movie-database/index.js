@@ -96,7 +96,7 @@ const paramChecker=(year,title)=>{
   let errors = [];
   if(!year){
     errors.push("year is missing")
-  }else if(year.length!==4){
+  }else if(!/\d{4}/.test(year)){
     errors.push("the year should be 4 digits")
     
   }else if(isNaN(year)){
