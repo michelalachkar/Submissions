@@ -158,7 +158,7 @@ app.get("/movies/delete/:id", (req, res) => {
     res.json({status:404, error:true, message:`the movie id ${id} does not exist`})
   }
 });
-
+//checkpoint
 app.listen(port, () => {
   console.log(`Server listenning on http://localhost:${port}`);
 });
