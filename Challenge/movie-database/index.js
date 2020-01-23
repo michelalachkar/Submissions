@@ -92,8 +92,37 @@ app.get("/movies/get/id/:id", (req, res) => {
   }
 });
 //add
-app.get("/movies/add", (req, res) => {
-  res.send("this should be a post request that adds a movie");
+const paramChecker=(year,title)=>{
+  let errors = [];
+  if(!year){
+    errors.push("year is missing")
+  }else if(year.length!==4){
+    errors.push("the year should be 4 digits")
+  }else if(isNaN(year)){
+    errors.push("the year should be a number")
+  }
+  if(!title){
+    errors.push("title is missing")
+  }
+  return errors;
+}
+
+app.get("/movies/add?", (req, res) => {
+  let year = req.query.year;
+  let title = req.query.title;
+  let rating = req.query.rating;
+  let errors = paramChecker(year,title);
+  if (errors.length>0){
+    res.json({status:403, error:true, message:errors});
+  }else if (!rating){
+    movies.push({title:title,year:year,rating:4});
+    res.json({title:title,year:year,rating:4});
+  }else{
+    movies.push({title:title,year:year,rating:rating});
+    res.json({title:title,year:year,rating:rating});
+  }
+
+  console.log(movies);
 });
 //edit
 app.get("/movies/edit", (req, res) => {
