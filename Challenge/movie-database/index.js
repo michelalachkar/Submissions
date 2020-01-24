@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const port = 5000;
+const port = 3000;
 app.use(bodyParser.json());
 
 const mongoose = require("mongoose");
@@ -16,7 +16,17 @@ mongoose
   })
   .then(() => console.log("MongoDb Connected"))
   .catch(err => console.log(err));
-
+//Schemas
+const userSchema = new Schema({
+  username:{
+    type:String,
+    required: true
+  },
+  password:{
+    type: String,
+    required: true
+  }
+})
 const movieSchema = new Schema({
   title: {
     type: String,
@@ -31,9 +41,9 @@ const movieSchema = new Schema({
     required: true
   }
 });
-
+//models
 const Movie = mongoose.model("movies", movieSchema);
-
+const User = mongoose.model("users",userSchema);
 app.get("/", (req, res) => {
   res.send("now");
 });
@@ -69,6 +79,11 @@ app.get("/search", (req, res) => {
 
 // let movies = [];
 // get
+app.get("/users/get",(req,res)=>{
+  User.find().then(user =>{
+    res.json(users)
+  })
+})
 app.get("/movies/get", (req, res) => {
   Movie.find().then(movie => {
     res.json(movie);
@@ -141,7 +156,23 @@ const paramChecker = (year, title) => {
   }
   return errors;
 };
+app.post("/users/add",(req,res)=>{
+  req.body.username = req.query.username;
+  req.body.password = req.query.password;
+  let newUser = new User({
+    username: req.body.username,
+    password: req.body.password
 
+  })
+  if(User.find({username:newUser.username})){
+  res.json({status:130,message:"user already exists"})
+  }
+  else{
+    
+    newUser.save().then(user=>{res.json(user)}).catch(err=>console.log(err));
+  
+  }
+})
 app.post("/movies/add", (req, res) => {
   let year = req.query.year;
   let title = req.query.title;
@@ -192,7 +223,6 @@ app.put("/movies/update/:id", (req, res) => {
 
   if (movieById) {
     movieById.then(movie => (movieToUpdate = movie));
-    console.log(movieToUpdate);
     for (test in req.query) {
       if (test === "title") {
         movieToUpdate[test] = req.query[test];
