@@ -2,37 +2,72 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar{
+  max-height: 13vh;
+  background-color: #6010b1;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+}
+.title{
+  float:left;
+  height: 100%;
+}
+.title h1{
+  margin: 5px;
+}
+.title p{
+  margin:5px
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+
+.mainSection{
+  height: 87vh;
+  margin: 0px;
+  padding-top: 13vh;
+  scroll-snap-align: start;
+
+}
+html{
+  scroll-snap-type: y mandatory;
+}
+.mainSection h2{
+  margin:0px;
+}
+
+.intro{
+  background-color: #eabfcb;
+}
+
+
+.news{
+  background-color: #c191a1;
+}
+.contact{
+  background-color: #a4508b;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    display: grid;
+    grid-template-columns: 100vw 100vw 100vw;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  html{
+    scroll-snap-type: x mandatory;
+    max-height: 100vh;
   }
-  to {
-    transform: rotate(360deg);
+
+  .title p{
+    display: none;
+  }
+  .title h1{
+    font-size: 1em;
+  }
+  .titleLinks{
+    display: grid;
+    grid-template-rows: auto auto;
+  }
+  .navbar{
+    display: relative;
   }
 }
