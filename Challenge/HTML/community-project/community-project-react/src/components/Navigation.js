@@ -5,8 +5,8 @@ export default function Navigation() {
         <div className="navbar">
         <div className="titleLinks">
             <div className="title">
-                <h1>The Sky is The Limit</h1>
-                <p>Where we bring your ideas to life</p>
+                <h1>No FACEBOOK</h1>
+                <p>YOUR privacy, YOUR life</p>
             </div>
             <div className="navLinks">
                 <a href="#intro" >Home</a>
